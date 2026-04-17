@@ -3,6 +3,7 @@ dist/
 build/
 .env
 .env.local
+.env.*.local
 .DS_Store
 *.log
 coverage/
@@ -11,3 +12,6 @@ __pycache__/
 *.pyc
 .venv/
 target/
+*.tsbuildinfo
+.idea/
+.vscode/

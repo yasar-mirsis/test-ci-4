@@ -1,10 +1,9 @@
 # test-ci-4
 
-## Overview
+A lightweight REST API service built with Express.js and TypeScript. This project exposes a single `GET /hello` endpoint that returns a JSON greeting message, serving as a foundational API template demonstrating proper project structure, configuration management, and production-ready patterns.
 
-The **test-ci-4** system is a lightweight REST API service built with Express.js and TypeScript. Its primary purpose is to expose a single `GET /hello` endpoint that returns a JSON greeting message. This serves as a foundational API template that demonstrates proper project structure, configuration management, and production-ready patterns.
+## Features
 
-**Key Characteristics:**
 - Minimalist single-endpoint API
 - TypeScript-first development with compiled JavaScript runtime
 - Express.js web framework for HTTP handling
@@ -12,45 +11,141 @@ The **test-ci-4** system is a lightweight REST API service built with Express.js
 - CORS-enabled for cross-origin accessibility
 - Production-ready with graceful shutdown handling
 
-**Architecture Style:** Monolithic single-tier server application
-
----
-
-
 ## Technology Stack
 
-| Technology | Version | Justification |
-|------------|---------|---------------|
-| **Node.js** | 18 LTS+ | Required runtime; LTS ensures stability and long-term support |
-| **TypeScript** | 5.x | Primary language; provides type safety, better IDE support, and catches errors at compile time |
-| **Express.js** | 4.x | Industry-standard Node.js web framework; lightweight, flexible, and well-documented |
-| **ts-node** | 10.x | Enables TypeScript execution without manual compilation; simplifies development workflow |
-| **@types/express** | 4.x | TypeScript type definitions for Express; ensures type-safe Express usage |
-| **nodemon** | 3.x | Development tool; auto-restarts server on file changes for faster iteration |
-| **eslint** | 8.x+ | Code linting; enforces consistent code style and catches potential issues |
-| **prettier** | 3.x+ | Code formatting; ensures consistent formatting across the codebase |
+- **Node.js** 18 LTS+ - Runtime environment
+- **TypeScript** 5.x - Type-safe development
+- **Express.js** 4.x - Web framework
+- **ts-node** 10.x - TypeScript execution without compilation
+- **nodemon** 3.x - Auto-restart on file changes
+- **Jest** - Testing framework
 
-**Why Express.js?**
-- Minimal learning curve with extensive ecosystem
-- Perfect fit for simple REST APIs
-- Middleware architecture aligns with requirements
-- Production-ready and battle-tested
+## Prerequisites
 
-**Why TypeScript?**
-- Requirement FR-5 mandates TypeScript
-- Type safety reduces runtime errors
-- Better developer experience with autocomplete and refactoring
-- Easier maintenance and onboarding
+- Node.js version 18.0.0 or higher
+- npm or yarn package manager
 
-**Why no database?**
-- Requirement analysis shows static response only
-- No persistence needed for `/hello` endpoint
-- Reduces complexity and deployment overhead
+## Installation
 
----
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd test-ci-4
+```
 
+2. Install dependencies:
+```bash
+npm install
+```
 
----
+## Available Scripts
 
-This project is managed by the SDLC Pipeline. Implementation tasks are tracked as GitHub/GitLab issues.
-Each issue is solved by an autonomous agent on its own branch with a pull request.
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server with hot-reload using nodemon and ts-node |
+| `npm run build` | Compile TypeScript to JavaScript using tsc |
+| `npm start` | Start the production server (runs compiled JavaScript from `dist/index.js`) |
+| `npm test` | Run tests using Jest |
+| `npm run lint` | Lint TypeScript files using ESLint |
+| `npm run format` | Format code using Prettier |
+
+## Configuration
+
+The application can be configured using environment variables:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PORT` | Server port number | `3000` |
+| `NODE_ENV` | Environment (development, production, test) | `development` |
+
+### Example
+
+```bash
+# Set custom port
+PORT=8080 npm start
+
+# Or using .env file
+PORT=3001
+NODE_ENV=production
+```
+
+## API Endpoints
+
+### GET /hello
+
+Returns a JSON greeting message.
+
+**Request:**
+```http
+GET /hello
+```
+
+**Response:**
+```json
+{
+  "message": "Hello, World!"
+}
+```
+
+**Status Codes:**
+- `200 OK` - Successful request
+- `404 Not Found` - If the route is not found
+- `405 Method Not Allowed` - If HTTP method is not GET
+
+**CORS:**
+The endpoint is accessible from any origin.
+
+## Project Structure
+
+```
+test-ci-4/
+├── src/
+│   ├── index.ts              # Application entry point
+│   ├── config/
+│   │   ├── index.ts          # Configuration module
+│   │   └── types.ts          # Configuration types
+│   ├── routes/
+│   │   ├── hello.ts          # Hello endpoint handler
+│   │   └── types.ts          # Route types
+│   └── middleware/
+│       ├── cors.ts           # CORS middleware
+│       └── errorHandler.ts   # Error handling middleware
+├── dist/                     # Compiled JavaScript output
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+## Development
+
+1. Start the development server:
+```bash
+npm run dev
+```
+
+2. The server will automatically restart when you modify TypeScript files.
+
+3. Access the API at `http://localhost:3000/hello`
+
+## Building for Production
+
+1. Compile TypeScript:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm start
+```
+
+## Testing
+
+Run the test suite:
+```bash
+npm test
+```
+
+## License
+
+MIT
