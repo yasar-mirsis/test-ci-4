@@ -5,9 +5,9 @@ import { Request, Response, NextFunction } from 'express';
  * Returns 404 status with JSON error message for undefined routes
  */
 export const notFoundHandler = (
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   res.status(404).setHeader('Content-Type', 'application/json').json({
     error: 'Not Found',
@@ -19,9 +19,9 @@ export const notFoundHandler = (
  * Returns 405 status with JSON error message when wrong HTTP method is used
  */
 export const methodNotAllowedHandler = (
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   res.status(405).setHeader('Content-Type', 'application/json').json({
     error: 'Method Not Allowed',
